@@ -29,10 +29,6 @@ export const connectToSocket = (server) => {
 
             timeOnline[socket.id] = new Date();
 
-            // connections[path].forEach(elem => {
-            //     io.to(elem)
-            // })
-
             for (let a = 0; a < connections[path].length; a++) {
                 io.to(connections[path][a]).emit("user-joined", socket.id, connections[path])
             }
@@ -43,8 +39,8 @@ export const connectToSocket = (server) => {
                         messages[path][a]['sender'], messages[path][a]['socket-id-sender'])
                 }
             }
-
         })
+
 
         socket.on("signal", (toId, message) => {
             io.to(toId).emit("signal", socket.id, message);
@@ -79,6 +75,8 @@ export const connectToSocket = (server) => {
 
         })
 
+        
+
         socket.on("disconnect", () => {
 
             var diffTime = Math.abs(timeOnline[socket.id] - new Date())
@@ -109,7 +107,7 @@ export const connectToSocket = (server) => {
             }
 
 
-        })
+        });
 
 
     })
