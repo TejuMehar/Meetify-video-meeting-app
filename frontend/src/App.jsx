@@ -1,4 +1,5 @@
 import React from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import LandingPage from "./pages/landingPage"
 
 function App() {
@@ -6,7 +7,11 @@ function App() {
 
   return (
     <>
-      <LandingPage/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
+      </Router>
     </>
   )
 }
